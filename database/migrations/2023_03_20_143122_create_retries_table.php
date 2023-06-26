@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('retries', function (Blueprint $table) {
+            $table->integer('ID', true);
+            $table->integer('subscriber_ID');
+            $table->integer('subservices_ID');
+            $table->integer('tips_ID');
+            $table->string('Retry_Time', 88);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('retries');
+    }
+};

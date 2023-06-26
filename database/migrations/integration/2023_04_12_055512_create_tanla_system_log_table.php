@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::connection('integration')->create('tanla_system_log', function (Blueprint $table) {
+            $table->integer('ID', true);
+            $table->integer('LeadsID')->nullable();
+            $table->string('msisdn', 88)->nullable();
+            $table->text('Description')->nullable();
+            $table->string('RequestUrl', 124);
+            $table->string('url', 124);
+            $table->string('type', 88);
+            $table->timestamp('Date')->useCurrent();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::connection('integration')->dropIfExists('tanla_system_log');
+    }
+};
